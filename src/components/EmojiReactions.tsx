@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { Reaction } from '../types';
-import { EMOJI_OPTIONS } from '../constants';
+import { Reaction } from '../../types';
+import { EMOJI_OPTIONS } from '../../constants';
 
 interface EmojiReactionsProps {
   reactions: Reaction[];

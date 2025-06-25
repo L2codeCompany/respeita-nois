@@ -1,12 +1,12 @@
 
 import React, { useState, useCallback, useEffect } from 'react';
-import { BlogPost, Comment, Reaction } from './types';
+import { BlogPost, Comment, Reaction } from '../types';
 // initialBlogPosts is currently empty, so fetch/localStorage is primary
 import { initialBlogPosts as fallbackPosts } from './data/blogPosts'; 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BlogPostItem from './components/BlogPostItem';
-import { GOOGLE_DOC_PUBLISHED_URL } from './constants';
+import { GOOGLE_DOC_PUBLISHED_URL } from '../constants';
 
 const LOCAL_STORAGE_KEY = 'respeitaNoisBlogPosts';
 const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;

@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { BlogPost } from '../types';
+import { BlogPost } from '../../types';
 import EmojiReactions from './EmojiReactions';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
