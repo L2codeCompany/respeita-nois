@@ -1,6 +1,6 @@
 
 import React, { useState, useCallback } from 'react';
-import { BlogPost, Comment as CommentType } from '../types';
+import { BlogPost } from '../types';
 import EmojiReactions from './EmojiReactions';
 import CommentList from './CommentList';
 import CommentForm from './CommentForm';
@@ -34,7 +34,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, onAddComment, onAddRe
       <div className="p-6">
         <h2 className="text-3xl font-bold text-purple-700 mb-2 truncate" title={post.title}>{post.title}</h2>
         <div className="text-sm text-slate-500 mb-3">
-          <span>By {post.author}</span> | <span>{post.date}</span>
+          <span>Por {post.author}</span> | <span>{post.date}</span>
         </div>
         <p className="text-slate-600 leading-relaxed mb-4">{post.excerpt}</p>
 
@@ -45,7 +45,7 @@ const BlogPostItem: React.FC<BlogPostItemProps> = ({ post, onAddComment, onAddRe
             aria-expanded={isExpanded}
             aria-controls={`post-content-${post.id}`}
           >
-            Read More
+            Leia Mais
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 ml-1">
               <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
             </svg>

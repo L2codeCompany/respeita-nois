@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import BlogPostItem from './components/BlogPostItem';
 import { GOOGLE_DOC_PUBLISHED_URL } from './constants';
 
-const LOCAL_STORAGE_KEY = 'storyStreamBlogPosts';
+const LOCAL_STORAGE_KEY = 'respeitaNoisBlogPosts';
 const TWENTY_FOUR_HOURS_IN_MS = 24 * 60 * 60 * 1000;
 
 interface StoredBlogData {
@@ -34,6 +34,8 @@ const fetchGoogleDocPosts = async (): Promise<BlogPost[]> => {
 
   try {
     const response = await fetch(GOOGLE_DOC_PUBLISHED_URL);
+    console.log(`Fetching Google Doc from: ${GOOGLE_DOC_PUBLISHED_URL}`);
+    console.log(`Response status: ${response.status}`);
     if (!response.ok) {
       throw new Error(`Failed to fetch Google Doc: ${response.statusText}`);
     }
@@ -61,7 +63,7 @@ const fetchGoogleDocPosts = async (): Promise<BlogPost[]> => {
         fetchedPosts.push({
           id: `gdoc-post-${title.toLowerCase().replace(/\s+/g, '-')}-${index}`,
           title: title.trim(),
-          author: 'StoryStream Editor', // Default author
+          author: 'Respeita Nóis',
           date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
           excerpt: createExcerpt(contentHtml),
           content: contentHtml,
@@ -79,7 +81,7 @@ const fetchGoogleDocPosts = async (): Promise<BlogPost[]> => {
          fetchedPosts.push({
           id: `gdoc-post-single-${pageTitle.toLowerCase().replace(/\s+/g, '-')}`,
           title: pageTitle,
-          author: 'StoryStream Editor',
+          author: 'Respeita Nóis',
           date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
           excerpt: createExcerpt(fullBodyContent),
           content: fullBodyContent,
@@ -113,8 +115,9 @@ const App: React.FC = () => {
 
         if (storedItem) {
           const parsedStorage: StoredBlogData = JSON.parse(storedItem);
+          console.log(Date.now() - parsedStorage.timestamp < TWENTY_FOUR_HOURS_IN_MS);
           if (parsedStorage && Array.isArray(parsedStorage.posts) && typeof parsedStorage.timestamp === 'number') {
-            if (Date.now() - parsedStorage.timestamp < TWENTY_FOUR_HOURS_IN_MS) {
+            if (Date.now() - parsedStorage.timestamp < TWENTY_FOUR_HOURS_IN_MS && parsedStorage.posts.length > 0) {
               postsToUse = parsedStorage.posts; 
             } else {
               console.log("Local storage data is stale. Attempting to fetch fresh data.");
@@ -246,10 +249,10 @@ const App: React.FC = () => {
       <main className="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <header className="mb-10 text-center">
           <h1 className="text-5xl font-extrabold text-slate-800 tracking-tight">
-            Welcome to <span className="text-purple-600">StoryStream</span>
+            Comitê <span className="text-purple-600">Respeita Nóis</span>
           </h1>
           <p className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">
-            Your daily dose of insights, stories, and ideas. Explore articles, share your thoughts, and react!
+            Nosso comitê foi criado em 2023, com o objetivo de acolher e ouvir colegas que possam ter passado por situações de desrespeito ou desconforto no ambiente de trabalho, como em questões de gênero, cor, sexualidade, crença ou sotaque.
           </p>
         </header>
         
