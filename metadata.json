@@ -1,0 +1,6 @@
+{
+  "name": "Respeita nóis - landing page",
+  "description": "A dynamic landing page that functions as a blog, showcasing articles with features for comments and emoji reactions. Content is sourced and displayed to simulate reading from external documents or sheets.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
